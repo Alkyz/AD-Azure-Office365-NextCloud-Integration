@@ -49,27 +49,27 @@
 #user-settings-form button {
     width: 200px;
     margin-top: 50px;
-    padding: 10px 20px; /* Adjusted padding for oval shape */
-    background-color: #0082c9; /* Nextcloud button color */
+    padding: 10px 20px;
+    background-color: #0082c9; 
     color: white;
     border: none;
-    border-radius: 20px; /* Oval shape */
+    border-radius: 20px; 
     cursor: pointer;
     font-size: 16px;
-    text-transform: uppercase; /* Stylistic choice for button text */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Adds a slight shadow for depth */
-    transition: background-color 0.3s; /* Smooth background color transition on hover */
+    text-transform: uppercase; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    transition: background-color 0.3s; 
 }
 
 #user-settings-form button:hover {
-    background-color: #006699; /* A darker shade when hovered */
+    background-color: #006699;
 }
 
 #user-settings-form textarea {
-    grid-column: 1 / -1; /* Make textarea span all columns */
-    height: 150px; /* Adjusted height for better visual */
+    grid-column: 1 / -1; 
+    height: 150px; 
 }
 
 #user-settings-form .form-row:last-child {
-    grid-column: 2 / 3; /* Place the submit button in the second column */
+    grid-column: 2 / 3; 
 }
