@@ -4,7 +4,6 @@ declare(strict_types=1);
 \OCP\Util::addScript('nextad', 'nextad_scripts');
 ?>
 <?php
-// Ensure the styles and scripts are linked properly
 ?>
 <div id="ldap-user-settings">
     <h1>Customize LDAP User Settings</h1>
