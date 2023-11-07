@@ -1,0 +1,75 @@
+#ldap-user-settings {
+    width: 800px; /* Adjusted width */
+    margin: auto;
+    background: #FFF;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+#ldap-user-settings h1 {
+    color: #333;
+    font-size: 24px;
+}
+
+#ldap-user-settings p {
+    font-size: 14px;
+    color: #666;
+}
+
+#user-settings-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    margin-top: 20px;
+}
+
+#user-settings-form .form-row {
+    display: flex;
+    flex-direction: column;
+}
+
+#user-settings-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#user-settings-form input[type="text"],
+#user-settings-form input[type="email"],
+#user-settings-form input[type="password"],
+#user-settings-form input[type="tel"],
+#user-settings-form input[type="url"],
+#user-settings-form textarea {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+#user-settings-form button {
+    width: 200px;
+    margin-top: 50px;
+    padding: 10px 20px; /* Adjusted padding for oval shape */
+    background-color: #0082c9; /* Nextcloud button color */
+    color: white;
+    border: none;
+    border-radius: 20px; /* Oval shape */
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase; /* Stylistic choice for button text */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Adds a slight shadow for depth */
+    transition: background-color 0.3s; /* Smooth background color transition on hover */
+}
+
+#user-settings-form button:hover {
+    background-color: #006699; /* A darker shade when hovered */
+}
+
+#user-settings-form textarea {
+    grid-column: 1 / -1; /* Make textarea span all columns */
+    height: 150px; /* Adjusted height for better visual */
+}
+
+#user-settings-form .form-row:last-child {
+    grid-column: 2 / 3; /* Place the submit button in the second column */
+}

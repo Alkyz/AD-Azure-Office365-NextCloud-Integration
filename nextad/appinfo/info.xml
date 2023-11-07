@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <!-- SPDX-FileCopyrightText: Mario Oliva <moliv149@fiu.edu>
+         SPDX-License-Identifier: CC0-1.0 -->
+    <id>nextad</id>
+    <name>NextAD</name>
+    <summary>NextAD app allows NextCloud users to customize users&#x27; Active Directory domain controller profile.</summary>
+    <description><![CDATA[With this app, you can change your profile name and password in an Active Directory / LDAP environment. Changes will also be reflected in the NextCloud app. More features to be added later.]]></description>
+    <version>0.0.1</version>
+    <licence>agpl</licence>
+    <author mail="moliv149@fiu.edu">Mario Oliva</author>
+    <namespace>NextAD</namespace>
+    <category>customization</category>
+    <bugs>https://github.com/Alkyz/AD-Azure-Office365-NextCloud-Integration/issues</bugs>
+    <dependencies>
+        <nextcloud min-version="27" max-version="27"/>
+    </dependencies>
+    <navigations>
+        <navigation>
+            <name>NextAD</name>
+            <route>nextad.page.index</route>
+        </navigation>
+    </navigations>
+    <resources>
+        <urlbase>nextad</urlbase>
+        <css>
+            <file>css/nextad_styles.css</file>
+        </css>
+        <js>
+            <file>js/nextad_scripts.js</file>
+        </js>
+    </resources>
+</info>
+
