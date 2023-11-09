@@ -1,2 +1,2 @@
-# AD-Azure-Office365-NextCloud-Integration
+# NextAD
 NextCloud app that integrates Microsoft Active Directory, Azure, and Office 360 applications.
