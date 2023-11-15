@@ -1,28 +1,62 @@
 <?php
+
 declare(strict_types=1);
-// SPDX-FileCopyrightText: Mario Oliva <moliv149@fiu.edu>
-// SPDX-License-Identifier: AGPL-3.0-or-later
 
 namespace OCA\NextAD\Controller;
 
-use OCA\NextAD\AppInfo\Application;
+use OCA\NextAD\Service\LDAPService;
+use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\Controller;
-use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IRequest;
-use OCP\Util;
+use OCP\ILogger;
+use OCP\AppFramework\Http\NoAdminRequired;
+use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
+use OCP\AppFramework\Http\TemplateResponse;
 
 class PageController extends Controller {
-	public function __construct(IRequest $request) {
-		parent::__construct(Application::APP_ID, $request);
-	}
 
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 */
+    public function __construct(
+        IRequest $request,
+        private LDAPService $ldapService,
+        private ILogger $logger
+    ) {
+        parent::__construct('nextad', $request);
+    }
+
+	#[NoAdminRequired]
+	#[NoCSRFRequired]
 	public function index(): TemplateResponse {
-		Util::addScript(Application::APP_ID, 'nextad-main');
+		$this->logger->info('Index method called');
 
-		return new TemplateResponse(Application::APP_ID, 'main');
-	}
+		\OCP\Util::addStyle('nextad', 'nextad_styles');
+		\OCP\Util::addScript('nextad', 'nextad_scripts');
+
+		$response = new TemplateResponse('nextad', 'main'); 
+	
+		return $response;
 }
+
+    #[NoAdminRequired]
+    #[NoCSRFRequired]
+    public function checkLdapConnection(): JSONResponse {
+        $this->logger->info('checkLdapConnection called');
+        try {
+            $message = $this->ldapService->connect();
+            $this->logger->info('LDAP connection message: ' . $message);
+            return new JSONResponse([
+                'status' => 'success',
+                'data' => $message
+            ]);
+        } catch (\Exception $e) {
+            $this->logger->error('Error in LDAP connection: ' . $e->getMessage(), ['exception' => $e]);
+            return new JSONResponse([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+				// 'file' => $e->getFile(),
+				// 'line' => $e->getLine(),
+				// 'trace' => $e->getTraceAsString(),
+            ], $e->getCode() === 0 ? 500 : $e->getCode());
+        }
+    }
+}
+
