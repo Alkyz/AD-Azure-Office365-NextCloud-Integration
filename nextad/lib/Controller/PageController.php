@@ -52,9 +52,6 @@ class PageController extends Controller {
             return new JSONResponse([
                 'status' => 'error',
                 'message' => $e->getMessage(),
-				// 'file' => $e->getFile(),
-				// 'line' => $e->getLine(),
-				// 'trace' => $e->getTraceAsString(),
             ], $e->getCode() === 0 ? 500 : $e->getCode());
         }
     }
