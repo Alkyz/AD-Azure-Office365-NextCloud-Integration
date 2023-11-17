@@ -38,14 +38,15 @@ class PageController extends Controller {
 
     #[NoAdminRequired]
     #[NoCSRFRequired]
-    public function checkLdapConnection(): JSONResponse {
+    public function getUserAttributes(): JSONResponse {
         $this->logger->info('checkLdapConnection called');
         try {
             $message = $this->ldapService->connect();
             $this->logger->info('LDAP connection message: ' . $message);
             return new JSONResponse([
                 'status' => 'success',
-                'data' => $message
+                'userData' => $message,
+                'debug' => $message,
             ]);
         } catch (\Exception $e) {
             $this->logger->error('Error in LDAP connection: ' . $e->getMessage(), ['exception' => $e]);
