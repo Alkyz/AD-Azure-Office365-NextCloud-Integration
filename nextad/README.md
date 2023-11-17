@@ -3,10 +3,13 @@ SPDX-FileCopyrightText: Mario Oliva <moliv149@fiu.edu>
 SPDX-License-Identifier: CC0-1.0
 -->
 
-# Next A D
-Place this app in **nextcloud/apps/**
+# Next AD
+
 
 ## Building the app
+
+<img width="1032" alt="Customize Active Directory User Settings" src="https://github.com/Alkyz/NextAD/assets/90973494/06173fa4-0af0-4ecc-8366-8fc0803d53dc">
+
 
 The app can be built by using the provided Makefile by running:
 
