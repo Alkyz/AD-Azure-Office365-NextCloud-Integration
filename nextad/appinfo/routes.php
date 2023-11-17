@@ -23,7 +23,8 @@ return [
 		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
 		['name' => 'note_api#preflighted_cors', 'url' => '/api/0.1/{path}',
 			'verb' => 'OPTIONS', 'requirements' => ['path' => '.+']],
-		['name' => 'page#checkLdapConnection', 'url' => '/api/v1/ldap/connection',
+		['name' => 'page#getUserAttributes', 'url' => '/getUserAttributes',
 				'verb' => 'GET']
 	]
 ];
+
