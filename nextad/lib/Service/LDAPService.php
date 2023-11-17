@@ -18,13 +18,25 @@ class LDAPService {
     public function connect() {
         $ldapProvider = $this->ldapProviderFactory->getLDAPProvider();
 
-        // Get User UID from your AD server and pass it into getLDAPConnection()
-        $ldapConnection = $ldapProvider->getLDAPConnection();
+        // Get User UID from NextCloud Users or LDAP settings and pass it into getLDAPConnection() & getUserDN()
+        $ldapConnection = $ldapProvider->getLDAPConnection("");
 
-        if($ldapConnection->isConnected()) {
-            return $this->l10n->t('Connected to LDAP server');
-        } else {
-            throw new \Exception($this->l10n->t('Could not connect to LDAP server'));
-        }
+        $filter = "(objectClass=*)"; 
+        $baseDn = $ldapProvider->getUserDN("");
+        
+        $search = ldap_search($ldapConnection, $baseDn, $filter);
+        $entries = ldap_get_entries($ldapConnection, $search);
+        
+        $userData = [
+            'displayName' => $entries[0]['displayname'][0],
+            'company' => $entries[0]['company'][0],
+            'streetAddress' => $entries[0]['streetaddress'][0],
+            'email' => $entries[0]['mail'][0], 
+            'telephone' => $entries[0]['telephonenumber'][0],
+            'webPage' => $entries[0]['wwwhomepage'][0],
+            'description' => $entries[0]['description'][0],
+        ];
+        
+        return $userData; 
     }
 }
