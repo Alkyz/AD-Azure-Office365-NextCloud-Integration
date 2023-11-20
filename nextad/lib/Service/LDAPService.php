@@ -5,6 +5,7 @@ use OCP\IL10N;
 use OCP\LDAP\ILDAPProvider;
 use OCP\LDAP\ILDAPProviderFactory;
 
+
 class LDAPService {
 
     private $ldapProviderFactory;
@@ -15,14 +16,13 @@ class LDAPService {
         $this->l10n = $l10n;
     }
 
-    public function connect() {
+    public function connect($uid) {
         $ldapProvider = $this->ldapProviderFactory->getLDAPProvider();
 
-        // Get User UID from NextCloud Users or LDAP settings and pass it into getLDAPConnection() & getUserDN()
-        $ldapConnection = $ldapProvider->getLDAPConnection("");
+        $ldapConnection = $ldapProvider->getLDAPConnection($uid);
 
         $filter = "(objectClass=*)"; 
-        $baseDn = $ldapProvider->getUserDN("");
+        $baseDn = $ldapProvider->getUserDN($uid);
         
         $search = ldap_search($ldapConnection, $baseDn, $filter);
         $entries = ldap_get_entries($ldapConnection, $search);
@@ -39,4 +39,39 @@ class LDAPService {
         
         return $userData; 
     }
+
+    public function updateUserAttributes($uid, $data) {
+        $ldapProvider = $this->ldapProviderFactory->getLDAPProvider();
+        $ldapConnection = $ldapProvider->getLDAPConnection($uid);
+        $ldapUserDN = $ldapProvider->getUserDN($uid);
+        
+        $modifyData = [];
+        foreach ($data as $key => $value) {
+            if (!in_array($key, ['uid', '_route'])) {
+                if ($key === "email") {
+                    $key = "mail";
+                } elseif ($key === "telephone") {
+                    $key = "telephoneNumber";
+                } elseif ($key === "webPage") {
+                $key = "wWWHomePage";
+                }
+
+                if (!empty($value)) {
+                    $modifyData[$key] = $value;
+                }
+            }
+        }
+
+        if (!empty($modifyData)) {
+            if (ldap_modify($ldapConnection, $ldapUserDN, $modifyData)) {
+                return "User attributes updated successfully";
+            } else {
+                throw new \Exception('Failed to update LDAP attributes');
+            }
+        } else {
+            return "No attributes to update";
+        }
+    
+    }
+    
 }
