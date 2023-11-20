@@ -6,8 +6,8 @@ declare(strict_types=1);
 <?php
 ?>
 <div id="ldap-user-settings">
-    <h1>Customize Active Directory User Settings</h1>
-    <p>Note: Changed user settings will be reflected as part of the user's newest Active Directory attributes.</p>
+    <h1>Customize Active Directory User Settings. That's <i><u><strong>NextAD</strong></u></i>.</h1>
+    <p>Changed user settings will be reflected as part of the user's newest Active Directory attributes.</p>
     <form id="user-settings-form">
         <div class="form-row">
             <label for="display-name">Display Name:</label>
@@ -39,6 +39,7 @@ declare(strict_types=1);
         </div>
         <div class="form-row button-row">
             <button id="preview-button" type="button">Preview Attributes</button>
+            <button id="wipe-button" type="button">Wipe Entries</button>
             <button id="submit-button" type="submit">Set As Default</button>
         </div>
     </form>
