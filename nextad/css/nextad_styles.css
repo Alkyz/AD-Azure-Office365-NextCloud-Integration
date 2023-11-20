@@ -1,4 +1,16 @@
+.alert-message {
+    position: absolute; 
+    top: 0; 
+    right: 0;
+    background-color: white;
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
 #ldap-user-settings {
+    position: relative;
     width: 800px;
     margin: auto;
     background: #FFF;
