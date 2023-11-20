@@ -23,8 +23,11 @@ return [
 		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
 		['name' => 'note_api#preflighted_cors', 'url' => '/api/0.1/{path}',
 			'verb' => 'OPTIONS', 'requirements' => ['path' => '.+']],
-		['name' => 'page#getUserAttributes', 'url' => '/getUserAttributes',
-				'verb' => 'GET']
+		['name' => 'page#getUserAttributes', 'url' => '/getUserAttributes/{uid}',
+				'verb' => 'GET'],
+		['name' => 'page#putUserAttributes', 'url' => '/putUserAttributes/{uid}',
+				'verb' => 'PUT']
 	]
 ];
+
 
