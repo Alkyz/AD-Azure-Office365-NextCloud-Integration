@@ -24,21 +24,27 @@ class PageController extends Controller {
         parent::__construct('nextad', $request);
     }
 
-	#[NoAdminRequired]
-	#[NoCSRFRequired]
-	public function index(): TemplateResponse {
-		$this->logger->info('Index method called');
+    /**
+     * @NoAdminRequired
+     * @NoCSRFRequired
+     */
 
-		\OCP\Util::addStyle('nextad', 'nextad_styles');
-		\OCP\Util::addScript('nextad', 'nextad_scripts');
+    public function index(): TemplateResponse {
+	$this->logger->info('Index method called');
 
-		$response = new TemplateResponse('nextad', 'main'); 
+	\OCP\Util::addStyle('nextad', 'nextad_styles');
+	\OCP\Util::addScript('nextad', 'nextad_scripts');
+
+	$response = new TemplateResponse('nextad', 'main'); 
 	
-		return $response;
-}
+	return $response;
+    }
 
-    #[NoAdminRequired]
-    #[NoCSRFRequired]
+    /**
+     * @NoAdminRequired
+     * @NoCSRFRequired
+     */
+
     public function getUserAttributes($uid): JSONResponse {
         $this->logger->info('checkLdapConnection called');
         try {
@@ -58,8 +64,11 @@ class PageController extends Controller {
         }
     }
 
-    #[NoAdminRequired]
-    #[NoCSRFRequired]
+    /**
+     * @NoAdminRequired
+     * @NoCSRFRequired
+     */
+
     public function putUserAttributes($uid, IRequest $request): JSONResponse {
         $this->logger->info('putUserAttributes called');
         try {
