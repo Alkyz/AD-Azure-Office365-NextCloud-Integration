@@ -1,4 +1,5 @@
-// Fetch uid logic here (i.e let userId = ...)
+var userId = document.getElementById('user-id').getAttribute('data-user-id');
+console.log(userId);
 
 document.addEventListener('DOMContentLoaded', function () {
     var previewButton = document.getElementById('preview-button');
@@ -46,14 +47,20 @@ document.addEventListener('DOMContentLoaded', function () {
             wipeButton.disabled = true;
             submitButton.disabled = true;
             fetch('/index.php/apps/nextad/getUserAttributes/' + userId)
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('User not found in AD');
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     console.log(data.debug);
                     toggleInputFields(true, data);
                     previewButton.textContent = 'Edit Attributes';
                 })
                 .catch(error => {
-                    console.error('Error:', error);
+                    console.log('Error:', error);
+                    showMessage("AD User Invalid", '#8B0000');
                     wipeButton.disabled = false;
                     submitButton.disabled = false;
                 });
@@ -88,7 +95,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         var json = JSON.stringify(object);
-        console.log(json);
 
         fetch('/index.php/apps/nextad/putUserAttributes/' + userId, {
             method: 'PUT',
@@ -97,11 +103,20 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             body: json
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to update AD settings');
+            }
+            return response.json();
+        })
         .then(data => {
             console.log(data);
             console.log("Debug:", data.debug);
             showMessage("Successfully Updated AD Settings", 'green');
+        })
+        .catch(error => {
+            console.log('Error:', error);
+            showMessage("AD User Invalid", '#8B0000');
         });
     });
 });
