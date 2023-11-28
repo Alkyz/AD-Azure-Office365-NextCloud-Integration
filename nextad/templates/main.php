@@ -2,7 +2,14 @@
 declare(strict_types=1);
 \OCP\Util::addStyle('nextad', 'nextad_styles');
 \OCP\Util::addScript('nextad', 'nextad_scripts');
+
+$userSession = \OC::$server->getUserSession();
+$userId = $userSession->isLoggedIn() ? $userSession->getUser()->getUID() : '';
+
 ?>
+
+<div id="user-id" data-user-id="<?php echo htmlspecialchars($userId, ENT_QUOTES, 'UTF-8'); ?>"></div>
+
 <?php
 ?>
 <div id="ldap-user-settings">
