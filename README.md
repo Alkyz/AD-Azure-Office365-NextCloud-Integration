@@ -30,8 +30,6 @@ This NextCloud app integrates Microsoft Active Directory into NextCloud with sea
 - **/Documents**:
   - **NextAD User Manual.pdf**: Comprehensive user manual for end-users.
   - **Official Documentation.pdf**: The latest NextAD project documentation.
- 
-### /Videos: Contains MP4 videos of the NextAD app including demo and app setup.
 
 ## Installation Guide
 
