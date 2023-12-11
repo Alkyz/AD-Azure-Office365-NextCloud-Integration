@@ -53,7 +53,7 @@ You will need to use the credentials found inside the compose file to provide th
 
 Now, enable the app if neccessary through the menu settings and you should be able to see NextAD through your dashboard. The image below shows what the menu bar should now display.
 
-<img src="https://github.com/Alkyz/NextAD/assets/90973494/704035d4-b562-40fd-bb4f-9d4202f04783" width="1000" height="300">
+<img src="https://github.com/Alkyz/NextAD/assets/90973494/704035d4-b562-40fd-bb4f-9d4202f04783" width="700" height="150">
 
 If you are an Active Directory user, for a quick test that the app is working, try selecting 'Preview Attributes' to fetch your current user attributes in Active Directory. Here is an example of what the response should look like:
 
